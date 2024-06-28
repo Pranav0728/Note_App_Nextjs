@@ -1,6 +1,6 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 interface Data {
   _id: string;
@@ -11,7 +11,18 @@ interface Data {
 export default function Page() {
   const router = useRouter();
   const [datas, setDatas] = useState<Data[]>([]);
+
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PageContent />
+    </Suspense>
+  );
+}
+
+function PageContent() {
+  const router = useRouter();
   const searchParams = useSearchParams();
+  const [datas, setDatas] = useState<Data[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {

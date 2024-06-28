@@ -1,8 +1,17 @@
-"use client"
-import { useSearchParams } from "next/navigation";
-import { useState } from "react";
+"use client";
+import { Suspense, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function Page() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PageContent />
+    </Suspense>
+  );
+}
+
+function PageContent() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const [error, setError] = useState("");
 
@@ -11,14 +20,14 @@ export default function Page() {
     const title = event.target[0].value;
     const description = event.target[1].value;
     const userId = searchParams.get('userId');
-    
+
     if (!title || !description) {
       alert("Please fill all the fields");
       return;
     }
-    
+
     setError("");
-    
+
     try {
       const response = await fetch(`http://localhost:3000/api/notes?userId=${userId}`, {
         method: "POST",
@@ -31,7 +40,7 @@ export default function Page() {
           userId,
         }),
       });
-      
+
       if (response.status === 200) {
         setError("");
         alert("Successfully Registered");
