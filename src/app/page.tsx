@@ -2,22 +2,25 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-export default function page() {
+
+export default function Page() {
   const [error, setError] = useState("");
   const router = useRouter();
+
   const handleSubmit = async (e: any) => {
+    e.preventDefault(); // This should be called once at the beginning of the function
     const email = e.target[0].value;
     const username = e.target[1].value;
-    e.preventDefault();
     setError("");
-    try{
-    e.preventDefault();
-    const response = await fetch("http://localhost:3000/api/users");
-    const data = await response.json();
-    const user = data.find((user: any) => user.email === email && user.username === username);
-    const userId = user._id;  
+
+    try {
+      const response = await fetch("http://localhost:3000/api/users");
+      const data = await response.json();
+      const user = data.find((user: any) => user.email === email && user.username === username);
+      
       if (user) {
-        router.replace("/home?userId="+userId);
+        const userId = user._id;
+        router.replace("/home?userId=" + userId);
       } else {
         setError("User not found");
       }
@@ -25,6 +28,7 @@ export default function page() {
       setError("An error occurred while checking the user");
     }
   };
+
   return (
     <main className="flex flex-col items-center justify-center p-24">
       <h1 className="md:text-3xl text-xl mb-5 md:m-10 text-white text-center">
@@ -45,12 +49,11 @@ export default function page() {
           className="border text-lg w-56 md:w-80 p-2 m-2 rounded-md"
           placeholder="Enter username"
         />
-        {/* <input type="password"  className="border text-lg w-56 md:w-80 p-2 m-2 rounded-md" placeholder="Enter Password"/> */}
         <p className="text-red-900 font-bold text-lg">{error}</p>
         <button className="btn btn-primary rounded-md text-lg mt-5">
           Login
         </button>
-        <Link href={"/register"}>
+        <Link href="/register">
           <p className="text-xl text-black mt-3">New User? Register</p>
         </Link>
       </form>
