@@ -30,8 +30,9 @@ export default function Page() {
     if (userId) {
       fetchData();
     }
-  }, [userId]);
+  }, []);
     const deleteData = async (_Id:any) => {
+      const userId = searchParams.get('userId')
       try {
         const response = await fetch(`http://localhost:3000/api/notes?userId=${userId}&noteId=${_Id}`,{
           method: "DELETE",
