@@ -31,7 +31,27 @@ export default function Page() {
       fetchData();
     }
   }, [userId]);
+    const deleteData = async (_Id:any) => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/notes?userId=${userId}&noteId=${_Id}`,{
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            
+          })}
 
+        )
+        if(response.status==200){
+          // alert("Succesfully Deleted") 
+          location.reload()
+        }
+        
+      } catch (error:any) {
+        return console.log(error.message)
+      }
+  }
   return (
     <main className="flex flex-col items-center justify-center p-16 md:p-24">
       <h1 className="text-3xl">Your Notes</h1>    
@@ -40,10 +60,10 @@ export default function Page() {
             <div key={item._id}>
               <div className="md:w-52 w-40 h-40 border md:h-80 flex  justify-between flex-col text-wrap overflow-hidden m-5">
                 <div className="flex flex-col h-max-70 overflow-auto">
-              <p className="p-2 break-all"> <p className="font-bold">Title:</p> {item.title}</p>
-              <p className="p-2 break-all"> <p className="font-bold">Description:</p> {item.description}</p>
+              <div className="p-2 break-all"> <p className="font-bold">Title:</p> {item.title}</div>
+              <div className="p-2 break-all"> <p className="font-bold">Description:</p> {item.description}</div>
                   </div> 
-              <button className="md:w-52 w-40 p-2 border-t h-5 md:h-10 flex justify-center items-center btn btn-primary rounded-none ">Delete</button>
+              <button onClick={()=>{deleteData(item._id)}} className="md:w-52 w-40 p-2 border-t h-5 md:h-10 flex justify-center items-center btn btn-primary rounded-none ">Delete</button>
               </div>
             </div>
           ))}
