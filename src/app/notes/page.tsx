@@ -7,9 +7,9 @@ interface Data {
   title: string;
   description: string;
 }
+const searchParams = useSearchParams()
 export default function Page() {
   const router = useRouter();
-  const searchParams = useSearchParams()
   const [datas, setDatas] = useState<Data[]>([]);
   
   useEffect(() => {
