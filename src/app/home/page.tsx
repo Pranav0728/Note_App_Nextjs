@@ -5,10 +5,10 @@ import {  useState } from "react";
 
 export default function Page() {
   const [error, setError] = useState("")
+  const searchParams = useSearchParams()
   
   const handleSubmit = async (event:any) => {
     event.preventDefault();
-    const searchParams = useSearchParams()
     const title = event.target[0].value;
     const description = event.target[1].value;
     const userId = searchParams.get('userId')
