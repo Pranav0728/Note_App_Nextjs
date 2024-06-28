@@ -10,10 +10,10 @@ interface Data {
 export default function Page() {
   const router = useRouter();
   const searchParams = useSearchParams()
-  const userId = searchParams.get('userId')
   const [datas, setDatas] = useState<Data[]>([]);
-
+  
   useEffect(() => {
+    const userId = searchParams.get('userId')
     const fetchData = async () => {
       try {
         const response = await fetch(`http://localhost:3000/api/notes?userId=${userId}`);
