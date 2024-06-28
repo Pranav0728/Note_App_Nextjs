@@ -20,7 +20,7 @@ export default function Page() {
     setError("");
     
     try {
-      const response = await fetch(`http://localhost:3000/api/notes?userId=${userId}`, {
+      const response = await fetch(`http://notes-app-nextjs-one.vercel.app/api/notes?userId=${userId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
