@@ -61,33 +61,33 @@ export const POST = async (request:Request) => {
     }
 }
 
-export const PATCH = async (request:Request) => {
-    try {
-        const body = await request.json();
-        const {noteId, title, description} = body;
-        const {searchParams} = new URL(request.url)
-        const userId = searchParams.get("userId");
+// export const PATCH = async (request:Request) => {
+//     try {
+//         const body = await request.json();
+//         const {noteId, title, description} = body;
+//         const {searchParams} = new URL(request.url)
+//         const userId = searchParams.get("userId");
 
-        if(!noteId){
-            return new NextResponse(JSON.stringify({message:"Note not found"}),{status: 404});
-        }
-        if(!Types.ObjectId.isValid(noteId)){
-            return new NextResponse(JSON.stringify({message:"Invalid note"}),{status: 400});
-        }
-        if(!userId || !Types.ObjectId.isValid(userId)){
-            return new NextResponse(JSON.stringify({message:"Inavlid or missing user ID"}),{status: 400});
-        }
-        await connect();
-        const user = await User.findById(userId);
-        if(!user){
-            return new NextResponse(JSON.stringify({message:"User not found"}),{status: 404});
-        }
-        const updateNote = await Note.findByIdAndUpdate(noteId,{title,description},{new : true});
-        return new NextResponse(JSON.stringify({message:updateNote}));
-    } catch (error) {
-        return new NextResponse(JSON.stringify({message:error})),{status:400};
-    }
-}   
+//         if(!noteId){
+//             return new NextResponse(JSON.stringify({message:"Note not found"}),{status: 404});
+//         }
+//         if(!Types.ObjectId.isValid(noteId)){
+//             return new NextResponse(JSON.stringify({message:"Invalid note"}),{status: 400});
+//         }
+//         if(!userId || !Types.ObjectId.isValid(userId)){
+//             return new NextResponse(JSON.stringify({message:"Inavlid or missing user ID"}),{status: 400});
+//         }
+//         await connect();
+//         const user = await User.findById(userId);
+//         if(!user){
+//             return new NextResponse(JSON.stringify({message:"User not found"}),{status: 404});
+//         }
+//         const updateNote = await Note.findByIdAndUpdate(noteId,{title,description},{new : true});
+//         return new NextResponse(JSON.stringify({message:updateNote}));
+//     } catch (error) {
+//         return new NextResponse(JSON.stringify({message:error})),{status:400};
+//     }
+// }   
 
 export const DELETE = async (request:Request) => {
     try {
