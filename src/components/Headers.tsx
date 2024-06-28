@@ -1,6 +1,7 @@
 "use client"
 import Link from "next/link";
 import { useRouter ,useSearchParams} from "next/navigation";
+import { MdLogout } from "react-icons/md";
 
 
 export default function Headers() {
@@ -29,7 +30,7 @@ export default function Headers() {
             </Link>
           </li>
         ))}
-        <li><button onClick={()=>{router.replace("/")}}>Logout</button></li>
+        <li><button onClick={()=>{router.replace("/")}} className="text-2xl p-2 md:text-4xl"><MdLogout /></button></li>
        </ul>
     </nav>
   )

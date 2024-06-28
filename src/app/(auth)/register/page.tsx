@@ -51,8 +51,8 @@ export default function Home() {
       <h1 className="md:text-3xl text-xl mb-5 md:m-10 text-white text-center">Welcome to NoteApp</h1>
       <form onSubmit={handleSubmit} className="flex flex-col items-center justify-between bg-white p-5 md:p-10 rounded-md">
         <h1 className="text-2xl text-black m-2 font-bold">Register</h1>
-        <input type="text"   className="border text-lg w-56 md:w-80 p-2 m-2 rounded-md" placeholder="Enter email"/>
-        <input type="text"   className="border text-lg w-56 md:w-80 p-2 m-2 rounded-md" placeholder="Enter username" />
+        <input type="text"   className="border text-lg w-56 md:w-80 p-2 m-2 rounded-md" placeholder="Enter email" required/>
+        <input type="text"   className="border text-lg w-56 md:w-80 p-2 m-2 rounded-md" placeholder="Enter username" required/>
         {/* <input type="password"  className="border text-lg w-56 md:w-80 p-2 m-2 rounded-md" placeholder="Enter Password"/> */}
         <p className="text-red-900 font-bold text-lg">{error}</p>
         <button className="btn btn-primary rounded-md text-lg mt-5">Register</button>

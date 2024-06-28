@@ -38,7 +38,7 @@ export default function Page() {
       <div className="md:m-10 flex-wrap flex w-full md:text-xl text-lg">
           {datas.map((item) => (
             <div key={item._id}>
-              <div className="md:w-52 w-40 h-40 border md:h-80 flex justify-between flex-col text-wrap overflow-hidden m-5">
+              <div className="md:w-52 w-40 h-40 border md:h-80 flex  justify-between flex-col text-wrap overflow-hidden m-5">
                 <div className="flex flex-col h-max-70 overflow-auto">
               <p className="p-2 break-all"> <p className="font-bold">Title:</p> {item.title}</p>
               <p className="p-2 break-all"> <p className="font-bold">Description:</p> {item.description}</p>
