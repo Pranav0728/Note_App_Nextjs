@@ -17,7 +17,7 @@ export default function Page() {
     const fetchData = async () => {
       try {
         const userId = searchParams.get('userId');
-        const response = await fetch(`https://notes-app-nextjs-one.vercel.app//api/notes?userId=${userId}`);
+        const response = await fetch(`https://notes-app-nextjs-one.vercel.app/api/notes?userId=${userId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch data');
         }

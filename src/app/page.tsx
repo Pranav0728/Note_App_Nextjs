@@ -14,7 +14,7 @@ export default function Page() {
     setError("");
 
     try {
-      const response = await fetch("http://localhost:3000/api/users");
+      const response = await fetch("https://notes-app-nextjs-one.vercel.app/api/users");
       const data = await response.json();
       const user = data.find((user: any) => user.email === email && user.username === username);
       
