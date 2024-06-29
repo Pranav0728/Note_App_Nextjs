@@ -57,7 +57,7 @@ export default function Page() {
 
   return (
     <main className="flex flex-col items-center justify-center p-16 md:p-24">
-      <h1 className="text-3xl">Your Notes</h1>    
+      <h1 className="text-3xl">Your Notes appear here</h1>    
       <div className="md:m-10 flex-wrap flex w-full md:text-xl text-lg">
         {datas.map((item) => (
           <div key={item._id}>
